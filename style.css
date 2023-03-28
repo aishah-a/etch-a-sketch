@@ -11,9 +11,11 @@
     border-color: red;
     background-color: lavender;
     display: flex;
+    margin: 3px;
 }
 
-#cell {
+#cell,
+#rows {
     background-color: pink;
     margin: 2px;
 }
