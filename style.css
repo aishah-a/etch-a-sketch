@@ -1,21 +1,11 @@
 #container {
     border: 2px;
-    margin: 8px;
+    margin: auto;
     padding: 8px;
-    width: max-content;
-}
-
-#row {
-    border: 3px;
-    padding: 3px;
-    border-color: red;
-    background-color: lavender;
+    width: 520px;
+    height: 520px;
+    background-color: aliceblue;
     display: flex;
-    margin: 3px;
-}
-
-#cell,
-#rows {
-    background-color: pink;
-    margin: 2px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
