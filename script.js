@@ -4,23 +4,22 @@
 // insert 16 divs as cells
 // create row 15 more times
 
+let container = document.querySelector('#container');
 
-const container = document.getElementById("container");
+function generateGrid() {
+    for (let squares = 0; squares < 256; squares++) {
+    const grid = document.createElement('div');
+    grid.setAttribute("id", "grid-cell");
 
-let cell;
+    container.appendChild(grid);
 
+    grid.style.width = 31.25 + "px";
+    grid.style.height = 31.25 + "px";
+    grid.style.flexShrink = '0';
+    grid.style.border = '0.5px solid #E2CCCA'
+    grid.style.backgroundColor = '#FBF4EF'
 
-function newRow() {
-    let row = document.createElement("div");
-    row.setAttribute("id", "row");
-    container.appendChild(row);
-    for (let col = 0; col < 16; col++) {
-        cell = document.createElement("div");
-        cell.setAttribute("id", "cell");
-        cell.innerText = "holla";
-        row.appendChild(cell);
     }
 }
 
-
-newRow();
+generateGrid();
