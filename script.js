@@ -9,7 +9,7 @@ let container = document.querySelector('#container');
 function generateGrid() {
     for (let squares = 0; squares < 256; squares++) {
     const grid = document.createElement('div');
-    grid.setAttribute("id", "grid-cell");
+    grid.classList.add("cell");
 
     container.appendChild(grid);
 
@@ -23,3 +23,11 @@ function generateGrid() {
 }
 
 generateGrid();
+
+const divs = document.querySelectorAll('#container > div');
+
+for (const div of divs) {
+    div.addEventListener('mouseover', function mouseOver() {
+        div.style.backgroundColor = '#C3889D';
+    })
+}
