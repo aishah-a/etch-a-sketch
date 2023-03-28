@@ -1,0 +1,19 @@
+#container {
+    border: 2px;
+    margin: 8px;
+    padding: 8px;
+    width: max-content;
+}
+
+#row {
+    border: 3px;
+    padding: 3px;
+    border-color: red;
+    background-color: lavender;
+    display: flex;
+}
+
+#cell {
+    background-color: pink;
+    margin: 2px;
+}
