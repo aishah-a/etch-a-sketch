@@ -34,18 +34,19 @@ for (const div of divs) {
 }
 
 const button = document.getElementById("btn");
+button.addEventListener("click", changeGridSize);
+
+
 let gridSize;
 
-function changeGridSize() { // check input for number below 100, add return like checkInput from RPS
+function changeGridSize() { 
     gridSize = prompt('How many squares per side would you like in the grid? Please select a number between 1 and 100.');
 
     gridSize = parseInt(gridSize);
-    console.log(gridSize);
-
+    checkGridInput();
+    gridSize = checkGridInput;
+    return gridSize;
 }
-
-changeGridSize();
-checkGridInput();
 
 function checkGridInput() {
     if (gridSize < 1 || gridSize > 100) {
@@ -58,3 +59,4 @@ function checkGridInput() {
         return checkGridInput();
     }
 }
+
