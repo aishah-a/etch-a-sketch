@@ -4,7 +4,6 @@ let container = document.querySelector('#container');
 function generateGrid() {
     for (let squares = 0; squares < 256; squares++) {
     const grid = document.createElement('div');
-    grid.classList.add("cell");
 
     container.appendChild(grid);
 
@@ -18,7 +17,6 @@ function generateGrid() {
 }
 generateGrid();
 
-// add colour change on hover
 const divs = document.querySelectorAll('#container > div');
 for (const div of divs) {
     div.addEventListener('mouseover', function mouseOver() {
@@ -26,22 +24,6 @@ for (const div of divs) {
     })
 }
 
-
-const button = document.getElementById("btn");
-button.addEventListener("click", () => {
-    userGrid();
-    const oldDivs = document.querySelectorAll("#container > div");
-    oldDivs.forEach(oldDiv => {
-        oldDiv.remove();
-    });
-    // create new grid based on input
-    for (let cells = 0; cells < (gridSize * gridSize); cells++) {
-        const newDiv = document.createElement("div");
-        newDiv.innerText = 'test';
-        container.appendChild(newDiv);
-    }
- // make new grid
-});
 
 // ask user for grid size choice
 let gridSize;
@@ -53,12 +35,52 @@ function userGrid(size) {
         alert('The number must be between 1 and 100.');
         return userGrid();
     } else if (isNaN(gridSize)) {
-        alert("Please enter a numerical value.");
+        alert('Please enter a numerical value.');
         return userGrid();
     }
     return gridSize;
 }
 
+const button = document.getElementById('btn');
+button.addEventListener( 'click', () => {
+    userGrid();
+    
+    const oldDivs = container.querySelectorAll('div');
+    oldDivs.forEach(oldDiv => {
+        oldDiv.remove();
+    });
+
+    let newGridSize = (gridSize * gridSize);
+
+    let newContainer = document.querySelector('#container');
+
+    function changeGridSize() {
+        for (let squares = 0; squares < newGridSize; squares++) {
+            const newDiv = document.createElement('div');
+            
+            newContainer.appendChild(newDiv);
+
+            newDiv.style.width = 500/gridSize + 'px';
+            newDiv.style.height = 500/gridSize + 'px';
+            newDiv.style.flexShrink = '0';
+            newDiv.style.border = '0.5px solid #E2CCCA'
+            newDiv.style.backgroundColor = '#FBF4EF'
+        }
+    }
+    changeGridSize();
+    
+
+    const divs = container.querySelectorAll('div');
+    for (const div of divs) {
+        div.addEventListener('mouseover',function mouseOver() 
+        {
+            div.style.backgroundColor = '#C3889D';
+        });
+    }
+}
+);
+    
+    
 
 
 /*
@@ -67,6 +89,8 @@ Add a button to the top of the screen that will send the user a popup asking for
 Research button tags in HTML and how you can make a JavaScript function run when one is clicked.
 Also check out prompts.
 
-
+TO DO:
+1. force size of divs to fit container
+2. style user cell divs
 
 */
