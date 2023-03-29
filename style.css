@@ -1,11 +1,15 @@
-#container {
+#container,
+#new-container {
     border: 2px;
     margin: auto;
     padding: 8px;
     width: 520px;
     height: 520px;
-    background-color: aliceblue;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+#container {
+    background-color: aliceblue;
 }
