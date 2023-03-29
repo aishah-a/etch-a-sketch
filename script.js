@@ -6,6 +6,7 @@
 
 let container = document.querySelector('#container');
 
+//create 16*16 grid
 function generateGrid() {
     for (let squares = 0; squares < 256; squares++) {
     const grid = document.createElement('div');
@@ -21,13 +22,39 @@ function generateGrid() {
 
     }
 }
-
 generateGrid();
 
+// add colour change on hover
 const divs = document.querySelectorAll('#container > div');
 
 for (const div of divs) {
     div.addEventListener('mouseover', function mouseOver() {
         div.style.backgroundColor = '#C3889D';
     })
+}
+
+const button = document.getElementById("btn");
+let gridSize;
+
+function changeGridSize() { // check input for number below 100, add return like checkInput from RPS
+    gridSize = prompt('How many squares per side would you like in the grid? Please select a number between 1 and 100.');
+
+    gridSize = parseInt(gridSize);
+    console.log(gridSize);
+
+}
+
+changeGridSize();
+checkGridInput();
+
+function checkGridInput() {
+    if (gridSize < 1 || gridSize > 100) {
+        gridSize = prompt('Please select a number between 1 and 100;');
+        console.log(gridSize);
+        return checkGridInput();
+    } if (gridSize = isNaN(gridSize)) {
+        gridSize = prompt('Please input a numerical value.');
+        console.log(gridSize);
+        return checkGridInput();
+    }
 }
