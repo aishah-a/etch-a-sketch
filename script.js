@@ -1,9 +1,3 @@
-// Create a webpage with a 16x16 grid of square divs.
-// create row containing 16 divs
-// create row
-// insert 16 divs as cells
-// create row 15 more times
-
 let container = document.querySelector('#container');
 
 //create 16*16 grid
@@ -26,37 +20,53 @@ generateGrid();
 
 // add colour change on hover
 const divs = document.querySelectorAll('#container > div');
-
 for (const div of divs) {
     div.addEventListener('mouseover', function mouseOver() {
         div.style.backgroundColor = '#C3889D';
     })
 }
 
+
 const button = document.getElementById("btn");
-button.addEventListener("click", changeGridSize);
+button.addEventListener("click", () => {
+    userGrid();
+    const oldDivs = document.querySelectorAll("#container > div");
+    oldDivs.forEach(oldDiv => {
+        oldDiv.remove();
+    });
+    // create new grid based on input
+    for (let cells = 0; cells < (gridSize * gridSize); cells++) {
+        const newDiv = document.createElement("div");
+        newDiv.innerText = 'test';
+        container.appendChild(newDiv);
+    }
+ // make new grid
+});
 
-
+// ask user for grid size choice
 let gridSize;
-
-function changeGridSize() { 
+function userGrid(size) { 
     gridSize = prompt('How many squares per side would you like in the grid? Please select a number between 1 and 100.');
 
     gridSize = parseInt(gridSize);
-    checkGridInput();
-    gridSize = checkGridInput;
+    if (gridSize < 1 || gridSize > 100) {
+        alert('The number must be between 1 and 100.');
+        return userGrid();
+    } else if (isNaN(gridSize)) {
+        alert("Please enter a numerical value.");
+        return userGrid();
+    }
     return gridSize;
 }
 
-function checkGridInput() {
-    if (gridSize < 1 || gridSize > 100) {
-        gridSize = prompt('Please select a number between 1 and 100;');
-        console.log(gridSize);
-        return checkGridInput();
-    } if (gridSize = isNaN(gridSize)) {
-        gridSize = prompt('Please input a numerical value.');
-        console.log(gridSize);
-        return checkGridInput();
-    }
-}
 
+
+/*
+
+Add a button to the top of the screen that will send the user a popup asking for the number of squares per side for the new grid. Once entered, the existing grid should be removed and a new grid should be generated in the same total space as before (e.g. 960px wide) so that you’ve got a new sketch pad. Tip: Set the limit for the user input to a maximum of 100. A larger number of squares results in more computer resources being used, potentially causing delays, freezing, or crashing that we want to prevent.
+Research button tags in HTML and how you can make a JavaScript function run when one is clicked.
+Also check out prompts.
+
+
+
+*/
