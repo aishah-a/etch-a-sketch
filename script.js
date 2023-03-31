@@ -1,93 +1,77 @@
-let container = document.querySelector('#container');
+const container = document.getElementById('container');
 
-//create 16*16 grid
-function generateGrid() {
-    for (let squares = 0; squares < 256; squares++) {
-    const grid = document.createElement('div');
+for (let squares = 0; squares < 256; squares++) {
+    let grid = document.createElement('div');
+
+    grid.style.backgroundColor = '#FBF4EF';
+    grid.style.height = '31.25px';
+    grid.style.width = '31.25px';
+
+    grid.style.border = 'solid 0.5px #E2CCCA'
 
     container.appendChild(grid);
-
-    grid.style.width = 31.25 + "px";
-    grid.style.height = 31.25 + "px";
-    grid.style.flexShrink = '0';
-    grid.style.border = '0.5px solid #E2CCCA'
-    grid.style.backgroundColor = '#FBF4EF'
-
-    }
-};
-
-
-generateGrid();
-
-const divs = document.querySelectorAll('#container > div');
-for (const div of divs) {
-    div.addEventListener('mouseover', function mouseOver() {
-        div.style.backgroundColor = '#C3889D';
-    })
 }
 
+const canvas = container.querySelectorAll('div');
 
-// ask user for grid size choice
-let gridSize;
-function userGrid(size) { 
-    gridSize = prompt('How many squares per side would you like in the grid? Please select a number between 1 and 100.');
+for (const squares of canvas) {
+    squares.addEventListener('mouseenter', () => {
+        squares.style.backgroundColor = '#C3889D';
+    }
+    )
+}
 
-    gridSize = parseInt(gridSize);
+/*
+Add a button to the top of the screen that will send the user a popup asking for the number of squares per side for the new grid. Once entered, the existing grid should be removed and a new grid should be generated in the same total space as before (e.g. 960px wide) so that you’ve got a new sketch pad. Tip: Set the limit for the user input to a maximum of 100. A larger number of squares results in more computer resources being used, potentially causing delays, freezing, or crashing that we want to prevent.
+Research button tags in HTML and how you can make a JavaScript function run when one is clicked.
+*/
+
+const sizeButton = document.getElementById('size-btn');
+
+sizeButton.addEventListener('click', function getSize() {
+
+    let gridSize = prompt('How many squares would you like on each side of the canvas? Please select a number between 1 and 100.');
+
+    parseInt(gridSize);
     if (gridSize < 1 || gridSize > 100) {
         alert('The number must be between 1 and 100.');
-        return userGrid();
-    } else if (isNaN(gridSize)) {
-        alert('Please enter a numerical value.');
-        return userGrid();
+        return getSize();
     }
-    return gridSize;
-}
+    console.log(gridSize);
 
-const button = document.getElementById('btn');
-button.addEventListener('click', () => {
-    userGrid();
-    
-    const oldDivs = container.querySelectorAll('div');
-    oldDivs.forEach(oldDiv => {
-        oldDiv.remove();
-    });
-
-    let newGridSize = (gridSize * gridSize);
-
-    let newContainer = document.querySelector('#container');
-
-    function changeGridSize() {
-        for (let squares = 0; squares < newGridSize; squares++) {
-            const newDiv = document.createElement('div');
-            
-            newContainer.appendChild(newDiv);
-
-            newDiv.style.width = 500/gridSize + 'px';
-            newDiv.style.height = 500/gridSize + 'px';
-            newDiv.style.flexShrink = '0';
-            newDiv.style.border = '0.5px solid #E2CCCA'
-            newDiv.style.backgroundColor = '#FBF4EF'
-        }
+    const oldCanvas = document.querySelectorAll('#container > div');
+    for (const square of oldCanvas) {
+        square.remove();
     }
-    changeGridSize();
-    
 
-    const divs = container.querySelectorAll('div');
-    for (const div of divs) {
-        div.addEventListener('mouseover',function mouseOver() 
-        {
-            div.style.backgroundColor = '#C3889D';
+    let newSize = (gridSize * gridSize)
+
+    for (let newSquares = 0; newSquares < newSize; newSquares++) {
+        newGrid = document.createElement('div');
+
+        newGrid.style.backgroundColor = '#FBF4EF';
+        newGrid.style.width = (500/gridSize) + 'px';
+        newGrid.style.height = (500/gridSize) + 'px';
+
+        newGrid.style.flexShrink = 0;
+
+        newGrid.style.border = 'solid 0.5px #E2CCCA';
+
+        container.appendChild(newGrid);
+    }
+
+    const newCanvas = document.querySelectorAll('#container > div');
+    for (let squares of newCanvas) {
+        squares.addEventListener('mouseenter', ()=> {
+            squares.style.backgroundColor = '#C3889D'
         });
     }
-}
-);
+})
 
-const reset = document.getElementById('reset-btn');
-reset.addEventListener('click', () => {
-    const divs = container.querySelectorAll('div');
-    for (const div of divs) {
-        div.style.backgroundColor = '#FBF4EF'
+const resetButton = document.getElementById('reset-btn');
+resetButton.addEventListener('click', ()=> {
+    const grid = document.querySelectorAll('#container > div');
+    for (const each of grid) {
+        each.style.backgroundColor = '#FBF4EF';
     }
-    console.log(divs);
-    }
-)
+})

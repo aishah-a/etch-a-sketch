@@ -1,31 +1,23 @@
 * {
     box-sizing: border-box;
-    font-family: sans-serif;
-}
-
-
-body {
     text-align: center;
+    font-family: sans-serif;
     background-color: #F8F0F3;
 }
 
 #container {
-    border: 2px;
-    margin: auto;
-    padding: 0px;
-    width: 500px;
     height: 500px;
+    width: 500px;
+    margin: auto;
     display: flex;
     flex-wrap: wrap;
-    background-color: white;
 }
 
 button {
-    margin: 10px 10px 20px 10px;
-    padding: 4px;
+    margin: 10px 5px 30px;
+    padding: 5px;
 }
 
 h1 {
-    margin: 10px;
     color: #C3889D;
 }
