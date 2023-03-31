@@ -3,11 +3,11 @@ const container = document.getElementById('container');
 for (let squares = 0; squares < 256; squares++) {
     let grid = document.createElement('div');
 
-    grid.style.backgroundColor = 'pink';
+    grid.style.backgroundColor = '#FBF4EF';
     grid.style.height = '31.25px';
     grid.style.width = '31.25px';
 
-    grid.style.border = 'solid 0.5px black'
+    grid.style.border = 'solid 0.5px #E2CCCA'
 
     container.appendChild(grid);
 }
@@ -16,7 +16,7 @@ const canvas = container.querySelectorAll('div');
 
 for (const squares of canvas) {
     squares.addEventListener('mouseenter', () => {
-        squares.style.backgroundColor = 'black';
+        squares.style.backgroundColor = '#C3889D';
     }
     )
 }
@@ -49,15 +49,29 @@ sizeButton.addEventListener('click', function getSize() {
     for (let newSquares = 0; newSquares < newSize; newSquares++) {
         newGrid = document.createElement('div');
 
-        newGrid.style.backgroundColor = 'pink';
+        newGrid.style.backgroundColor = '#FBF4EF';
         newGrid.style.width = (500/gridSize) + 'px';
         newGrid.style.height = (500/gridSize) + 'px';
 
         newGrid.style.flexShrink = 0;
 
-        newGrid.style.border = 'solid 0.5px black';
+        newGrid.style.border = 'solid 0.5px #E2CCCA';
 
         container.appendChild(newGrid);
     }
 
+    const newCanvas = document.querySelectorAll('#container > div');
+    for (let squares of newCanvas) {
+        squares.addEventListener('mouseenter', ()=> {
+            squares.style.backgroundColor = '#C3889D'
+        });
+    }
+})
+
+const resetButton = document.getElementById('reset-btn');
+resetButton.addEventListener('click', ()=> {
+    const grid = document.querySelectorAll('#container > div');
+    for (const each of grid) {
+        each.style.backgroundColor = '#FBF4EF';
+    }
 })
