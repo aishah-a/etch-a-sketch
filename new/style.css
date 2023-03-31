@@ -1,0 +1,18 @@
+* {
+    box-sizing: border-box;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+#container {
+    height: 500px;
+    width: 500px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+button {
+    margin: 10px 5px 30px;
+    padding: 5px;
+}
