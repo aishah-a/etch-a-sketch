@@ -1,3 +1,16 @@
 h1 {
     text-align: center;
 }
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.square:not(#top_row) {
+    height: 30px;
+    width: 30px;
+    outline: 1px solid;
+    margin-top: 1px;
+    margin-left: 1px;
+}
