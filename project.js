@@ -38,7 +38,7 @@ function highlight() {
     squares.forEach(square => {
         square.addEventListener("mouseover", () =>
         {
-            square.style.backgroundColor = "red";
+            square.style.backgroundColor = "#B1A4F4";
         })
     })
 }
