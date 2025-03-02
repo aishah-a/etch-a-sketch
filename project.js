@@ -1,6 +1,9 @@
 const container = document.querySelector(".container");
+const sizeButton = document.querySelector("button");
+let gridSize = 16;
 
 function createGrid(num) {
+    clear();
     for (let cols = 0; cols < num; cols++) {
         const col = document.createElement("div");
         col.setAttribute("class", "column");
@@ -12,6 +15,19 @@ function createGrid(num) {
             row.setAttribute("class", "square");
             col.appendChild(row);
         }
+    }
+
+    highlight();
+}
+
+function getGridSize() {
+    gridSize = prompt("Please select a number between 1 and 100");
+    if (gridSize <= 100) {
+        clear();
+        createGrid(gridSize);
+    } else {
+        alert("The number must be between 1 and 100.");
+        getGridSize();
     }
 }
 
@@ -26,4 +42,21 @@ function highlight() {
         })
     })
 }
+
+function clear() {
+    const grid = document.querySelectorAll(".square");
+    grid.forEach(sq => {
+        sq.remove();
+    })
+    const columns = document.querySelectorAll(".column");
+    columns.forEach(col => {
+        col.remove();
+    })
+    
+}
+
+// default grid
+createGrid(gridSize);
+
+sizeButton.addEventListener("click", getGridSize);
 
